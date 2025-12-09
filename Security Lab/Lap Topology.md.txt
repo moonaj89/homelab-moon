@@ -1,0 +1,18 @@
+# Security Lab Topology
+
+The goal of this lab is to simulate a small enterprise network with:
+
+- Active Directory domain
+- Workstation clients
+- Security Onion monitoring traffic
+- Controlled attack / detection scenarios
+
+## High-Level Design
+
+- AD domain: `lab.local`
+- Domain Controller: `ad-dc01.lab.local`
+- Windows client(s): `win10-lab01.lab.local`, etc.
+- Security Onion:
+  - Monitors SPAN / mirror ports
+  - Receives logs from Windows via Winlogbeat / Sysmon
+- Firewall controls egress and lateral movement between VLANs.

@@ -1,0 +1,26 @@
+# Homelab Maintenance Checklist
+
+## Weekly
+
+- Check Proxmox VM health and CPU/RAM usage
+- Verify security updates on:
+  - Proxmox host
+  - Linux VMs
+  - Docker containers
+- Review Palo Alto and Security Onion alerts for anything interesting
+- Validate backups (at least spot-check)
+
+## Monthly
+
+- Export fresh backups of:
+  - Proxmox config
+  - Important VM configs
+  - Docker compose files
+- Test restore of at least one backup
+- Review firewall policies for unused rules
+
+## After Major Changes
+
+- Update diagrams in `docs/` and `network/`
+- Update VM inventory and notes in `virtualization/`
+- Record change summary in git commit message
