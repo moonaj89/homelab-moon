@@ -66,7 +66,7 @@ See [`network/vlan-design.md`](network/vlan-design.md) for more detail.
 - [`docker/`](docker/) – Self-hosted services and `docker-compose` files
 - [`security-lab/`](security-lab/) – Attack and detection lab notes
 - [`automation/`](automation/) – Future Ansible, scripts, infra-as-code ideas
-- [`runbooks/`](runbooks/) – Step-by-step procedures for changes and maintenance
+- [`Runbooks/`](Runbooks/) – Step-by-step procedures for changes and maintenance
 
 ---
 
