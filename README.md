@@ -14,7 +14,7 @@ The lab is built to resemble a small enterprise environment, with VLANs, a next-
 
 ---
 
-## High-Level Architecture
+## Current State High-Level Architecture
 
 **Core components:**
 
@@ -23,17 +23,17 @@ The lab is built to resemble a small enterprise environment, with VLANs, a next-
   - Palo Alto PA-440 (L3 firewall, VLAN gateway)
 
 - **Switching**
-  - Cisco Catalyst 3560 (core L2 switch, VLAN trunk to PA)
+  - TP-Link TL-SG2008 8 Port Gigabit Smart Managed Switch Omada (core L2 switch, VLAN trunk to PA)
 
 - **Compute**
   - Minisforum UM790 (Ryzen 9 7940HS, 64 GB RAM, NVMe)
     - Proxmox VE hypervisor
-    - Security Onion
+    - Security Onion (planned)
     - Windows / Linux servers
   - Raspberry Pi 5 (Docker host for light services)
 
 - **Wireless / Clients**
-  - Home Wi-Fi access point
+  - WAP: TP-Link EAP670 V2 Omada WiFi 6 AX5400 Wireless 2.5G
   - Laptops, phones, tablets, etc.
 
 ---
@@ -49,7 +49,9 @@ The lab is built to resemble a small enterprise environment, with VLANs, a next-
 | 30   | Home Wi-Fi        | 10.10.30.0/24  | `home-wifi-zone` | General Wi-Fi devices                |
 | 40   | Guest Wi-Fi       | 10.10.40.0/24  | `guest-wifi-zone`| Isolated guest access                |
 | 50   | Lab / Automation  | 10.10.50.0/24  | `lab-iot-zone`   | Raspberry Pi, lab services, tooling  |
-| 60   | Management        | 10.10.60.0/24  | `mgmt-zone`      | Switch / firewall / host management  |
+| 60   | NUC		   | 10.10.50.0/24  | `NUC`            | VM Workloads		      |
+| 70   | Future NAS        | 10.10.70.0/24  | `NAS`            | Storage			      |
+| 80   | Management        | 10.10.80.0/24  | `mgmt-zone`      | Switch / firewall / host management  |
 
 See [`network/vlan-design.md`](network/vlan-design.md) for more detail.
 
