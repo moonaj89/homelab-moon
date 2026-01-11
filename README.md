@@ -53,7 +53,7 @@ The lab is built to resemble a small enterprise environment, with VLANs, a next-
 | 70   | Future NAS        | 10.10.70.0/24  | `NAS`            | Storage			      |
 | 80   | Management        | 10.10.80.0/24  | `mgmt-zone`      | Switch / firewall / host management  |
 
-See [`Network/vlan-design.md`](network/vlan-design.md) for more detail.
+See [`Network/vlan-design.md`](Network/vlan-design.md) for more detail.
 
 ---
 
