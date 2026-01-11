@@ -59,13 +59,13 @@ See [`network/vlan-design.md`](network/vlan-design.md) for more detail.
 
 ## Contents of This Repo
 
-- [`Change-Logs/`](Change Log/) – Summary and lessons learned from variou efforts
+- [`Change-Logs/`](Change-Log/) – Summary and lessons learned from variou efforts
 - [`Docs/`](Docs/) – Overview, goals, and roadmap
 - [`Network/`](Network/) – Topology, VLANs, IP plan
 - [`Firewall/`](Firewall/) – Palo Alto zones, policies, and runbooks
 - [`Virtualization/`](Virtualization/) – Proxmox layout, VM inventory, Security Onion notes
 - [`Docker/`](Docker/) – Self-hosted services and `docker-compose` files
-- [`Security-lab/`](Security lab/) – Attack and detection lab notes
+- [`Security-lab/`](Security-lab/) – Attack and detection lab notes
 - [`Automation/`](Automation/) – Future Ansible, scripts, infra-as-code ideas
 - [`Runbooks/`](Runbooks/) – Step-by-step procedures for changes and maintenance
 
