@@ -44,13 +44,13 @@ The lab is built to resemble a small enterprise environment, with VLANs, a next-
 
 | VLAN | Name              | Subnet         | Zone             | Purpose                              |
 |------|-------------------|----------------|------------------|--------------------------------------|
-| 10   | Server / Compute  | 10.10.10.0/24  | `srv-zone`       | NUC, NAS (future), AD, Security VMs  |
+| 10   | Unused            | 10.10.10.0/24  |                  |                                      |
 | 20   | Home LAN (Wired)  | 10.10.20.0/24  | `home-wired-zone`| Wired clients and admin workstation  |
 | 30   | Home Wi-Fi        | 10.10.30.0/24  | `home-wifi-zone` | General Wi-Fi devices                |
 | 40   | Guest Wi-Fi       | 10.10.40.0/24  | `guest-wifi-zone`| Isolated guest access                |
 | 50   | Lab / Automation  | 10.10.50.0/24  | `lab-iot-zone`   | Raspberry Pi, lab services, tooling  |
-| 60   | NUC		   | 10.10.50.0/24  | `NUC`            | VM Workloads		      |
-| 70   | Future NAS        | 10.10.70.0/24  | `NAS`            | Storage			      |
+| 60   | NUC		   | 10.10.50.0/24  | `server-NUC`     | VM Workloads		              |
+| 70   | NAS   (Future)    | 10.10.70.0/24  | `NAS`            | Storage			      |
 | 80   | Management        | 10.10.80.0/24  | `mgmt-zone`      | Switch / firewall / host management  |
 
 See [`Network/vlan-design.md`](Network/vlan-design.md) for more detail.
