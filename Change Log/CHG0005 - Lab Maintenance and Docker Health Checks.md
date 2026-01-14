@@ -9,7 +9,7 @@ This work intentionally prioritized **verification and cleanup** over introducin
 
 ## Completed Tasks
 
-### Raspberry Pi 5 Power & Connectivity
+### 1. Raspberry Pi 5 Power & Connectivity
 - Powered on the Raspberry Pi 5 using a managed case with onboard power control
 - Observed expected Ethernet connectivity during boot
 - Identified an **unexpected Wi-Fi auto-connection**
@@ -23,7 +23,7 @@ nmcli connection show
 nmcli device disconnect wlan0
 ```
 
-## Network Configuration Cleanup
+## 2. Network Configuration Cleanup
 
 - Verified current IP configuration on the Pi
 - Confirmed the node had previously been configured with a static IP
@@ -43,7 +43,7 @@ nmcli device show eth0
 - Reduced configuration drift
 - Easier future subnet or gateway changes
 
-## Docker Health Check (Post-Downtime)
+## 3. Docker Health Check (Post-Downtime)
 
 - Verified Docker daemon status
 - Confirmed containers automatically started after reboot
@@ -60,7 +60,7 @@ docker system df
 
 No containers were found to be crash-looping or unhealthy.
 
-## Docker Restart & Orchestration Validation
+## 4. Docker Restart & Orchestration Validation
 - Observed that container restart policies were inconsistent or unset
 - Confirmed containers still reliably start on reboot
 - Identified a host-level orchestration layer responsible for container lifecycle management
@@ -74,7 +74,7 @@ systemctl list-unit-files | grep -Ei 'docker|compose'
 ```
 
 
-## Application Data Sync Validation
+## 5. Application Data Sync Validation
 
 - Corrected configuration for an existing photo/media synchronization workflow
 - Re-ran synchronization
@@ -82,7 +82,7 @@ systemctl list-unit-files | grep -Ei 'docker|compose'
 
 Service-specific commands and paths are intentionally omitted from public documentation.
 
-## Firewall & Access Policy Review
+## 6. Firewall & Access Policy Review
 
 - Audited recent network access rule changes
 - Confirmed management access aligns with intended trust boundaries
@@ -90,7 +90,7 @@ Service-specific commands and paths are intentionally omitted from public docume
 
 This step ensured changes made during earlier infrastructure work did not unintentionally expand access.
 
-## Service Management UI Rediscovery
+## 7. Service Management UI Rediscovery
 
 - Re-identified the host-level service management platform in use
 - Confirmed it operates as system services, not as a container
@@ -109,27 +109,17 @@ ss -tulnp | grep :81
 
 **Key Learnings & Takeaways**
 - Host-level orchestration tools may manage containers without appearing in docker ps
-
 - Containers can reliably restart even without explicit Docker restart policies when managed externally
-
 - DHCP with reservations provides the stability of static IPs without host-level configuration debt
-
 - Wi-Fi should be disabled on infrastructure nodes unless explicitly required
-
 - UI-layer issues (white screens, partial loads) are often service or cache related, not network failures
-
 - Periodic rediscovery and documentation of “forgotten” tooling is a normal and valuable part of maintaining a mature homelab
 
 **Current State (End of Session)**
 
-Raspberry Pi 5: Online, stable, wired-only, DHCP with reservation
-
-Docker: Healthy, all containers running as expected
-
-Networking: Predictable addressing and intended access boundaries
-
-Firewall: Policies reviewed and validated
-
-Service Management UI: Accessible and understood
-
-Documentation: Updated and cleaned for future reference
+-Raspberry Pi 5: Online, stable, wired-only, DHCP with reservation
+-Docker: Healthy, all containers running as expected
+-Networking: Predictable addressing and intended access boundaries
+-Firewall: Policies reviewed and validated
+-Service Management UI: Accessible and understood
+-Documentation: Updated and cleaned for future reference
