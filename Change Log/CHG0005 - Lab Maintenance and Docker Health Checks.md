@@ -19,8 +19,10 @@ This work intentionally prioritized **verification and cleanup** over introducin
 **Key commands used:**
 ```bash
 nmcli device status
+#show connections
 nmcli connection show
-nmcli device disconnect wlan0
+#delete connection
+sudo nmcli connection delete "<connection-name>"
 ```
 
 ## 2. Network Configuration Cleanup
@@ -32,9 +34,17 @@ nmcli device disconnect wlan0
 
 **Key commands used (on the Pi):**
 ```
+#show ip info, check default route, confirm ethernet details, dhcp vs static config
 ip addr show
 ip route
 nmcli device show eth0
+nmcli connection show "Wired connection 1"
+#modify connection to set DHCP, clear status, and bounce interface
+sudo nmcli connection modify "Wired connection 1" ipv4.method auto
+sudo nmcli connection modify "Wired connection 1" ipv4.addresses ""
+sudo nmcli connection modify "Wired connection 1" ipv4.gateway ""
+sudo nmcli connection down "Wired connection 1"
+sudo nmcli connection up "Wired connection 1"
 ```
 
 **Design rationale:**
@@ -53,28 +63,16 @@ nmcli device show eth0
 **Key commands used:**
 ```
 systemctl status docker --no-pager
+docker info
 docker ps -a
 docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"
 docker system df
+##show restart policies for docker containers
+docker ps -aq | xargs -I{} docker inspect -f '{{.Name}}  ->  {{.HostConfig.RestartPolicy.Name}}' {}
 ```
+No containers were found to be crash-looping or unhealthy
 
-No containers were found to be crash-looping or unhealthy.
-
-## 4. Docker Restart & Orchestration Validation
-- Observed that container restart policies were inconsistent or unset
-- Confirmed containers still reliably start on reboot
-- Identified a host-level orchestration layer responsible for container lifecycle management
-- Validated that container availability does not depend solely on Docker restart policies
-
-**Key commands used:**
-```
-docker inspect <container> | grep -i restart
-docker ps -aq | xargs -I{} docker inspect -f '{{.Name}} -> {{.HostConfig.RestartPolicy.Name}}' {}
-systemctl list-unit-files | grep -Ei 'docker|compose'
-```
-
-
-## 5. Application Data Sync Validation
+## 4. Application Data Sync Validation
 
 - Corrected configuration for an existing photo/media synchronization workflow
 - Re-ran synchronization
@@ -82,7 +80,7 @@ systemctl list-unit-files | grep -Ei 'docker|compose'
 
 Service-specific commands and paths are intentionally omitted from public documentation.
 
-## 6. Firewall & Access Policy Review
+## 5. Firewall & Access Policy Review
 
 - Audited recent network access rule changes
 - Confirmed management access aligns with intended trust boundaries
@@ -90,20 +88,17 @@ Service-specific commands and paths are intentionally omitted from public docume
 
 This step ensured changes made during earlier infrastructure work did not unintentionally expand access.
 
-## 7. Service Management UI Rediscovery
+## 6. Service Management UI Rediscovery
 
-- Re-identified the host-level service management platform in use
+- Re-identified the host-level service management platform in use.  I completely forgot configuring CasaOS previously.  But it explains the restart behavior for the containers I've been running.
 - Confirmed it operates as system services, not as a container
-- Located the management UI on a non-standard port
+- Located the management UI on a non-standard port - documented
 - Resolved an initial UI loading issue
 - Successfully accessed the interface from trusted internal networks
 
 **Key commands used:**
 ```
 systemctl status casaos*
-journalctl -u casaos-gateway -n 50 --no-pager
-ss -tulnp | grep :81
-
 ```
 
 
