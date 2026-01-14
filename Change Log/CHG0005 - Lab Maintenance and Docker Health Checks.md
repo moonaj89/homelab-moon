@@ -112,9 +112,9 @@ systemctl status casaos*
 
 **Current State (End of Session)**
 
--Raspberry Pi 5: Online, stable, wired-only, DHCP with reservation
--Docker: Healthy, all containers running as expected
--Networking: Predictable addressing and intended access boundaries
--Firewall: Policies reviewed and validated
--Service Management UI: Accessible and understood
--Documentation: Updated and cleaned for future reference
+- Raspberry Pi 5: Online, stable, wired-only, DHCP with reservation
+- Docker: Healthy, all containers running as expected
+- Networking: Predictable addressing and intended access boundaries
+- Firewall: Policies reviewed and validated
+- Service Management UI: Accessible and understood
+- Documentation: Updated and cleaned for future reference
